@@ -10,6 +10,11 @@
 # General
 --------------------------------------------------------------*/
 
+.custom-form {
+  max-width: 500px; /* Ajusta el tamaño máximo del formulario */
+}
+
+
 .textonegro{
   color:#000000
 }
