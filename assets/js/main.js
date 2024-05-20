@@ -28,6 +28,44 @@ form.addEventListener('submit', e => {
     }
 });
 
+
+document.addEventListener('DOMContentLoaded', () => {
+    const confirmPassword = document.getElementById('confirm_password');
+    const form = document.getElementById('form');
+    const parrafo = document.getElementById('warnings');
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        let warnings = '';
+        let entrar = false;
+        const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
+        parrafo.innerHTML = '';
+
+        if (!regexEmail.test(email.value)) {
+            warnings += 'El email no es válido.<br>';
+            entrar = true;
+        }
+
+        if (password.value.length < 8) {
+            warnings += 'La contraseña debe tener al menos 8 caracteres.<br>';
+            entrar = true;
+        }
+
+        if (password.value !== confirmPassword.value) {
+            warnings += 'Las contraseñas no coinciden.<br>';
+            entrar = true;
+        }
+
+        if (entrar) {
+            parrafo.innerHTML = warnings;
+        } else {
+            parrafo.innerHTML = 'Formulario enviado.';
+            form.submit();  // Enviar el formulario si todas las validaciones pasan
+        }
+    });
+});
+
+
 (function() {
   "use strict";
 
