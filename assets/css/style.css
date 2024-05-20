@@ -1,14 +1,10 @@
-/**
-* Template Name: EstateAgency
-* Template URL: https://bootstrapmade.com/real-estate-agency-bootstrap-template/
-* Updated: Mar 17 2024 with Bootstrap v5.3.3
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
 
-/*--------------------------------------------------------------
-# General
---------------------------------------------------------------*/
+.warnings {
+  text-align: center;
+  color: #ff0000;
+  margin: auto;
+  padding-top: 20px;
+}
 
 .custom-form {
   max-width: 500px; /* Ajusta el tamaño máximo del formulario */
@@ -44,6 +40,8 @@
   border-color: #2eca6a; 
 }
 
+
+/* Cosas que ya venían en la plantilla*/
 .content-c{
   text-align: justify;
 

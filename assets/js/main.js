@@ -1,10 +1,32 @@
-/**
-* Template Name: EstateAgency
-* Template URL: https://bootstrapmade.com/real-estate-agency-bootstrap-template/
-* Updated: Mar 17 2024 with Bootstrap v5.3.3
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
+const email = document.getElementById('email');
+const password = document.getElementById('password');
+
+const form = document.getElementById('form');
+const parrafo = document.getElementById('warnings');
+
+form.addEventListener('submit', e => {
+    e.preventDefault();
+    let warnings = '';
+    let entrar = false;
+    let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
+    parrafo.innerHTML = '';
+
+    if (!regexEmail.test(email.value)) {
+        warnings += 'El email no es válido. Por favor, utiliza el formato nombre@apellido.com <br>';
+        entrar = true;
+    }
+
+    if (password.value.length < 8) {
+        warnings += 'La contraseña debe tener más de 8 caracteres <br>';
+        entrar = true;
+    }
+    
+    if (entrar) {
+        parrafo.innerHTML = warnings;
+    } else {
+        parrafo.innerHTML = 'Enviado';
+    }
+});
 
 (function() {
   "use strict";
