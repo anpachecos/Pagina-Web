@@ -1,8 +1,104 @@
 
+document.addEventListener('DOMContentLoaded', function() {
+  const propertySelect = document.getElementById('property');
+  const properties = [
+    { id: 'propiedad1', name: '730 Eyzaguirre' },
+    { id: 'propiedad2', name: '921 Varas Mena' },
+    { id: 'propiedad3', name: '9423 Av. La Florida' },
+    { id: 'propiedad4', name: '1576 Serrano' },
+    { id: 'propiedad5', name: '20 El Algarrobal' },
+    { id: 'propiedad6', name: '756 Volcán Choshuenco' },
+    // Agrega más propiedades según sea necesario
+  ];
 
-localStorage.setItem("pato", "lucas");
+  properties.forEach(property => {
+    const option = document.createElement('option');
+    option.value = property.id;
+    option.textContent = property.name;
+    propertySelect.appendChild(option);
+  });
+});
 
-console.log(localStorage.getItem("pato"));
+document.addEventListener('DOMContentLoaded', () => {
+  // Validación para el formulario de agendar visita
+  const appointmentForm = document.getElementById('appointmentForm');
+  const fullNameInput = document.getElementById('fullName');
+  const emailInput = document.getElementById('email');
+  const phoneInput = document.getElementById('phone');
+  const propertySelect = document.getElementById('property');
+  const dateInput = document.getElementById('date');
+  const timeInput = document.getElementById('time');
+  const termsCheckbox = document.getElementById('terms');
+  const warningsParagraph = document.getElementById('warnings');
+  const successMessage = document.getElementById('successMessage');
+
+  if (appointmentForm) {
+      appointmentForm.addEventListener('submit', e => {
+          e.preventDefault();
+          let warnings = '';
+          let entrar = false;
+          const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
+          const regexPhone = /^[0-9]{9,15}$/;
+
+          warningsParagraph.innerHTML = '';
+
+          if (fullNameInput.value.trim() === '' || !/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(fullNameInput.value)) {
+              warnings += 'El nombre completo es inválido. <br>';
+              entrar = true;
+          }
+
+          if (!regexEmail.test(emailInput.value)) {
+              warnings += 'El email no es válido. Por favor, utiliza el formato nombre@apellido.com <br>';
+              entrar = true;
+          }
+
+          if (!phoneInput.value || !regexPhone.test(phoneInput.value)) {
+              warnings += 'El número de teléfono es inválido. Debe contener entre 9 y 15 dígitos. <br>';
+              entrar = true;
+          }
+
+          if (!propertySelect.value) {
+              warnings += 'Debe seleccionar una propiedad. <br>';
+              entrar = true;
+          }
+
+          if (!dateInput.value) {
+              warnings += 'Debe seleccionar una fecha. <br>';
+              entrar = true;
+          }
+
+          if (!timeInput.value) {
+              warnings += 'Debe seleccionar una hora. <br>';
+              entrar = true;
+          }
+
+          if (!termsCheckbox.checked) {
+              warnings += 'Debe aceptar los términos y condiciones. <br>';
+              entrar = true;
+          }
+
+          if (entrar) {
+              warningsParagraph.innerHTML = warnings;
+          } else {
+              warningsParagraph.innerHTML = '';
+              successMessage.style.display = 'block';
+              appointmentForm.reset();
+              setTimeout(() => {
+                  successMessage.style.display = 'none';
+              }, 5000);
+          }
+      });
+  }
+});
+
+
+
+
+
+
+/*localStorage.setItem("pato", "lucas");
+
+console.log(localStorage.getItem("pato"));*/
 
 document.addEventListener('DOMContentLoaded', () => {
   //* Validación para el formulario de inicio de sesión*/
