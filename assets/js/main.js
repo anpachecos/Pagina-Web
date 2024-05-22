@@ -1,72 +1,71 @@
-
-
 document.addEventListener('DOMContentLoaded', () => {
-  const email = document.getElementById('email');
-  const password = document.getElementById('password');
-  const form = document.getElementById('form');
-  const parrafo = document.getElementById('warnings');
+  // Validación para el formulario de inicio de sesión
+  const loginForm = document.getElementById('form');
+  const emailInput = document.getElementById('email');
+  const passwordInput = document.getElementById('password');
+  const warningsParagraph = document.getElementById('warnings');
 
-  form.addEventListener('submit', e => {
-      e.preventDefault();
-      let warnings = '';
-      let entrar = false;
-      let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
-      parrafo.innerHTML = '';
+  if (loginForm && emailInput && passwordInput && !document.getElementById('confirm_password')) {
+      loginForm.addEventListener('submit', e => {
+          e.preventDefault();
+          let warnings = '';
+          let entrar = false;
+          const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
+          warningsParagraph.innerHTML = '';
 
-      if (!regexEmail.test(email.value)) {
-          warnings += 'El email no es válido. Por favor, utiliza el formato nombre@apellido.com <br>';
-          entrar = true;
-      }
+          if (!regexEmail.test(emailInput.value)) {
+              warnings += 'El email no es válido. Por favor, utiliza el formato nombre@apellido.com <br>';
+              entrar = true;
+          }
 
-      if (password.value.length < 8) {
-          warnings += 'La contraseña debe tener más de 8 caracteres <br>';
-          entrar = true;
-      }
-      
-      if (entrar) {
-          parrafo.innerHTML = warnings;
-      } else {
-          parrafo.innerHTML = 'Enviado';
-      }
-  });
-});
+          if (passwordInput.value.length < 8) {
+              warnings += 'La contraseña debe tener más de 8 caracteres <br>';
+              entrar = true;
+          }
 
+          if (entrar) {
+              warningsParagraph.innerHTML = warnings;
+          } else {
+              warningsParagraph.innerHTML = 'Enviado';
+              loginForm.submit();  // Eliminar si no deseas enviar el formulario realmente
+          }
+      });
+  }
 
+  // Validación para el formulario de registro
+  const confirmPasswordInput = document.getElementById('confirm_password');
 
-document.addEventListener('DOMContentLoaded', () => {
-    const confirmPassword = document.getElementById('confirm_password');
-    const form = document.getElementById('form');
-    const parrafo = document.getElementById('warnings');
+  if (loginForm && emailInput && passwordInput && confirmPasswordInput) {
+      loginForm.addEventListener('submit', e => {
+          e.preventDefault();
+          let warnings = '';
+          let entrar = false;
+          const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
+          warningsParagraph.innerHTML = '';
 
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        let warnings = '';
-        let entrar = false;
-        const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
-        parrafo.innerHTML = '';
+          if (!regexEmail.test(emailInput.value)) {
+              warnings += 'El email no es válido. Por favor, utiliza el formato nombre@apellido.com <br>';
+              entrar = true;
+          }
 
-        if (!regexEmail.test(email.value)) {
-            warnings += 'El email no es válido.<br>';
-            entrar = true;
-        }
+          if (passwordInput.value.length < 8) {
+              warnings += 'La contraseña debe tener más de 8 caracteres <br>';
+              entrar = true;
+          }
 
-        if (password.value.length < 8) {
-            warnings += 'La contraseña debe tener al menos 8 caracteres.<br>';
-            entrar = true;
-        }
+          if (passwordInput.value !== confirmPasswordInput.value) {
+              warnings += 'Las contraseñas no coinciden.<br>';
+              entrar = true;
+          }
 
-        if (password.value !== confirmPassword.value) {
-            warnings += 'Las contraseñas no coinciden.<br>';
-            entrar = true;
-        }
-
-        if (entrar) {
-            parrafo.innerHTML = warnings;
-        } else {
-            parrafo.innerHTML = 'Formulario enviado.';
-            form.submit();  // Enviar el formulario si todas las validaciones pasan
-        }
-    });
+          if (entrar) {
+              warningsParagraph.innerHTML = warnings;
+          } else {
+              warningsParagraph.innerHTML = 'Formulario enviado.';
+              loginForm.submit();  // Eliminar si no deseas enviar el formulario realmente
+          }
+      });
+  }
 });
 
 
