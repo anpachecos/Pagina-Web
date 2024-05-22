@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transformador UF</title>
+</head>
+<body>
+    <h1>Transformador UF</h1>
+    <p>Ingrese un valor en pesos chilenos:</p>
+    <input type="number" id="inputPesos" placeholder="Ingrese el monto en CLP">
+    <button onclick="transformarUF()">Transformar</button>
+    <p id="resultado"></p>
+
+    <script>
+        function transformarUF() {
+            var montoCLP = document.getElementById("inputPesos").value;
+            var apiKey = "05fea24b031a7d8443d12ea5fa9526902e14db47";
+            var url = "https://api.sbif.cl/api-sbifv3/recursos_api/uf/2020/01?apikey=" + apiKey + "&formato=json";
+
+            // Realizar la solicitud a la API
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    var valorUF = data.UFs[0].Valor.replace(".", "").replace(",", ".");
+                    var resultadoUF = (montoCLP / parseFloat(valorUF)).toFixed(2);
+                    document.getElementById("resultado").innerText = "El monto en UF es: " + resultadoUF;
+                })
+                .catch(error => {
+                    console.error('Error al obtener datos:', error);
+                    document.getElementById("resultado").innerText = "Hubo un error al obtener los datos. Por favor, inténtelo de nuevo más tarde.";
+                });
+        }
+    </script>
+</body>
+</html>

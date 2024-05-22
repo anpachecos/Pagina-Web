@@ -1,3 +1,35 @@
+/*Estoy usando la Api para usar el valor de la UF en cada casa*/
+document.addEventListener("DOMContentLoaded", function() {
+  function transformarUF() {
+      var montoCLP = document.getElementById("montoCLP").innerText;
+      var apiKey = "05fea24b031a7d8443d12ea5fa9526902e14db47";
+      var url = "https://api.sbif.cl/api-sbifv3/recursos_api/uf/2020/01?apikey=" + apiKey + "&formato=json";
+
+      fetch(url)
+          .then(response => response.json())
+          .then(data => {
+              var valorUF = data.UFs[0].Valor.replace(".", "").replace(",", ".");
+              var resultadoUF = (parseFloat(montoCLP) / parseFloat(valorUF)).toFixed(2);
+              
+              document.getElementById("valorUF").innerText = resultadoUF;
+          })
+          .catch(error => {
+              console.error('Error al obtener datos:', error);
+              document.getElementById("resultado").innerText = "Hubo un error al obtener los datos. Por favor, inténtelo de nuevo más tarde.";
+          });
+  }
+
+  transformarUF();
+});
+
+
+
+
+
+/*localStorage.setItem("pato", "lucas");
+
+console.log(localStorage.getItem("pato"));*/
+
 
 document.addEventListener('DOMContentLoaded', function() {
   const propertySelect = document.getElementById('property');
@@ -8,7 +40,6 @@ document.addEventListener('DOMContentLoaded', function() {
     { id: 'propiedad4', name: '1576 Serrano' },
     { id: 'propiedad5', name: '20 El Algarrobal' },
     { id: 'propiedad6', name: '756 Volcán Choshuenco' },
-    // Agrega más propiedades según sea necesario
   ];
 
   properties.forEach(property => {
@@ -19,8 +50,9 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-document.addEventListener('DOMContentLoaded', () => {
   // Validación para el formulario de agendar visita
+
+document.addEventListener('DOMContentLoaded', () => {
   const appointmentForm = document.getElementById('appointmentForm');
   const fullNameInput = document.getElementById('fullName');
   const emailInput = document.getElementById('email');
@@ -93,46 +125,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+    document.addEventListener('DOMContentLoaded', () => {
+      //* Validación para el formulario de inicio de sesión*/
+      const loginForm = document.getElementById('form');
+      const emailInput = document.getElementById('email');
+      const passwordInput = document.getElementById('password');
+      const warningsParagraph = document.getElementById('warnings');
 
+      if (loginForm && emailInput && passwordInput && !document.getElementById('confirm_password')) {
+          loginForm.addEventListener('submit', e => {
+              e.preventDefault();
+              let warnings = '';
+              let entrar = false;
+              const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
+              warningsParagraph.innerHTML = '';
 
+              if (!regexEmail.test(emailInput.value)) {
+                  warnings += 'El email no es válido. Por favor, utiliza el formato nombre@apellido.com <br>';
+                  entrar = true;
+              }
 
-/*localStorage.setItem("pato", "lucas");
+              if (passwordInput.value.length < 8) {
+                  warnings += 'La contraseña debe tener más de 8 caracteres <br>';
+                  entrar = true;
+              }
 
-console.log(localStorage.getItem("pato"));*/
-
-document.addEventListener('DOMContentLoaded', () => {
-  //* Validación para el formulario de inicio de sesión*/
-  const loginForm = document.getElementById('form');
-  const emailInput = document.getElementById('email');
-  const passwordInput = document.getElementById('password');
-  const warningsParagraph = document.getElementById('warnings');
-
-  if (loginForm && emailInput && passwordInput && !document.getElementById('confirm_password')) {
-      loginForm.addEventListener('submit', e => {
-          e.preventDefault();
-          let warnings = '';
-          let entrar = false;
-          const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
-          warningsParagraph.innerHTML = '';
-
-          if (!regexEmail.test(emailInput.value)) {
-              warnings += 'El email no es válido. Por favor, utiliza el formato nombre@apellido.com <br>';
-              entrar = true;
-          }
-
-          if (passwordInput.value.length < 8) {
-              warnings += 'La contraseña debe tener más de 8 caracteres <br>';
-              entrar = true;
-          }
-
-          if (entrar) {
-              warningsParagraph.innerHTML = warnings;
-          } else {
-              warningsParagraph.innerHTML = 'Enviado';
-              loginForm.submit();  
-          }
-      });
-  }
+              if (entrar) {
+                  warningsParagraph.innerHTML = warnings;
+              } else {
+                  warningsParagraph.innerHTML = 'Enviado';
+                  loginForm.submit();  
+              }
+          });
+      }
 
   /* Validación para el formulario de registro*/
   const confirmPasswordInput = document.getElementById('confirm_password');
