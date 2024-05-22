@@ -25,13 +25,7 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: EstateAgency
-  * Template URL: https://bootstrapmade.com/real-estate-agency-bootstrap-template/
-  * Updated: Mar 17 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+
 </head>
 
 <body>
@@ -260,7 +254,7 @@
                   <a href="index.html">Inicio</a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">
-                  Contacto
+                  Agendar
                 </li>
               </ol>
             </nav>
@@ -277,92 +271,96 @@
             <div class="form-container">
                 <div class="row gy-3 overflow-hidden">
                     <div class="col-12">
-                        <form id="appointmentForm">
-                            <!-- Datos Personales -->
-                            <div class="form-floating mb-3">
-                                <input
-                                    type="text"
-                                    class="form-control"
-                                    name="fullName"
-                                    id="fullName"
-                                    placeholder="Nombre Completo"
-                                    pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"
-                                    required
-                                />
-                                <label for="fullName" class="form-label">Nombre Completo</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input
-                                    type="email"
-                                    class="form-control"
-                                    name="email"
-                                    id="email"
-                                    placeholder="name@example.com"
-                                    required
-                                />
-                                <label for="email" class="form-label">Correo Electrónico</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input
-                                    type="tel"
-                                    class="form-control"
-                                    name="phone"
-                                    id="phone"
-                                    placeholder="Número de Teléfono"
-                                    pattern="[0-9]{9,15}"
-                                    required
-                                />
-                                <label for="phone" class="form-label">Número de Teléfono</label>
-                            </div>
-                            <!-- Selección de Propiedad -->
-                            <div class="form-floating mb-3">
-                                <select class="form-control" name="property" id="property" required>
-                                    <option value="" disabled selected>Seleccione una propiedad</option>
-                                </select>
-                                <label for="property" class="form-label">Propiedad</label>
-                            </div>
-                            <!-- Información sobre la Visita -->
-                            <div class="form-floating mb-3">
-                                <input
-                                    type="date"
-                                    class="form-control"
-                                    name="date"
-                                    id="date"
-                                    required
-                                />
-                                <label for="date" class="form-label">Fecha Preferida</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input
-                                    type="time"
-                                    class="form-control"
-                                    name="time"
-                                    id="time"
-                                    required
-                                />
-                                <label for="time" class="form-label">Hora Preferida</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <textarea
-                                    class="form-control"
-                                    name="comments"
-                                    id="comments"
-                                    placeholder="Comentarios Adicionales"
-                                    rows="4"
-                                ></textarea>
-                                <label for="comments" class="form-label">Comentarios Adicionales</label>
-                            </div>
-                            <!-- Confirmación y Consentimiento -->
-                            <div class="form-group mb-3">
-                                <input type="checkbox" id="terms" name="terms" required>
-                                <label for="terms">Acepto los <a href="#">Términos y Condiciones</a></label>
-                            </div>
-                            <div class="form-group mb-3">
-                                <input type="checkbox" id="consent" name="consent">
-                                <label for="consent">Deseo recibir información adicional y promociones</label>
-                            </div>
-                            <button type="submit" class="btn btn-b">Agendar Visita</button>
-                        </form>
+                      <form id="appointmentForm">
+                        <!-- Datos Personales -->
+                        <div class="form-floating mb-3">
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="fullName"
+                                id="fullName"
+                                placeholder="Nombre Completo"
+                                pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$"
+                                required
+                            />
+                            <label for="fullName" class="form-label">Nombre Completo</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input
+                                type="email"
+                                class="form-control"
+                                name="email"
+                                id="email"
+                                placeholder="name@example.com"
+                                required
+                            />
+                            <label for="email" class="form-label">Correo Electrónico</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input
+                                type="tel"
+                                class="form-control"
+                                name="phone"
+                                id="phone"
+                                placeholder="Número de Teléfono"
+                                pattern="[0-9]{9,15}"
+                                
+                            />
+                            <label for="phone" class="form-label">Número de Teléfono</label>
+                        </div>
+                        <!-- Selección de Propiedad -->
+                        <div class="form-floating mb-3">
+                            <select class="form-control" name="property" id="property" required>
+                                <option value="" disabled selected>Seleccione una propiedad</option>
+                                <!-- Opciones de propiedad -->
+                                <option value="propiedad1">Propiedad 1</option>
+                                <option value="propiedad2">Propiedad 2</option>
+                            </select>
+                            <label for="property" class="form-label">Propiedad</label>
+                        </div>
+                        <!-- Información sobre la Visita -->
+                        <div class="form-floating mb-3">
+                            <input
+                                type="date"
+                                class="form-control"
+                                name="date"
+                                id="date"
+                                required
+                            />
+                            <label for="date" class="form-label">Fecha Preferida</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input
+                                type="time"
+                                class="form-control"
+                                name="time"
+                                id="time"
+                                required
+                            />
+                            <label for="time" class="form-label">Hora Preferida</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <textarea
+                                class="form-control"
+                                name="comments"
+                                id="comments"
+                                placeholder="Comentarios Adicionales"
+                                rows="4"
+                            ></textarea>
+                            <label for="comments" class="form-label">Comentarios Adicionales</label>
+                        </div>
+                        <!-- Confirmación y Consentimiento -->
+                        <div class="form-group mb-3">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <label for="terms">Acepto los <a href="#">Términos y Condiciones</a></label>
+                        </div>
+                        <div class="form-group mb-3">
+                            <input type="checkbox" id="consent" name="consent">
+                            <label for="consent">Deseo recibir información adicional y promociones</label>
+                        </div>
+                        <button type="submit" class="btn btn-b">Agendar Visita</button>
+                        <p class="warnings" id="warnings"></p>
+                    </form>
            
           </div>
         </div>

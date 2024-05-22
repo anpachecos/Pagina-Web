@@ -1,5 +1,11 @@
+
+
+localStorage.setItem("pato", "lucas");
+
+console.log(localStorage.getItem("pato"));
+
 document.addEventListener('DOMContentLoaded', () => {
-  // Validación para el formulario de inicio de sesión
+  //* Validación para el formulario de inicio de sesión*/
   const loginForm = document.getElementById('form');
   const emailInput = document.getElementById('email');
   const passwordInput = document.getElementById('password');
@@ -27,12 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
               warningsParagraph.innerHTML = warnings;
           } else {
               warningsParagraph.innerHTML = 'Enviado';
-              loginForm.submit();  // Eliminar si no deseas enviar el formulario realmente
+              loginForm.submit();  
           }
       });
   }
 
-  // Validación para el formulario de registro
+  /* Validación para el formulario de registro*/
   const confirmPasswordInput = document.getElementById('confirm_password');
 
   if (loginForm && emailInput && passwordInput && confirmPasswordInput) {
@@ -62,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
               warningsParagraph.innerHTML = warnings;
           } else {
               warningsParagraph.innerHTML = 'Formulario enviado.';
-              loginForm.submit();  // Eliminar si no deseas enviar el formulario realmente
+              loginForm.submit();  
           }
       });
   }
